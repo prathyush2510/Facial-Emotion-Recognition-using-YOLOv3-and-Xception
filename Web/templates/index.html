@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% block content %}
+<script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(600)
+                        .height(400);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
+
+<style>
+    @media(max-width: 768px){
+        #blah{
+            margin-top: 10px;
+        }
+    }
+</style>
+<center><h2>Face Emotion Recognition with Deep Learning</h2></center>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <center><b class="btn btn-warning" style="width: 50%;">Detect Live</b></center>
+        <br>
+        <br>
+        <center><a href="{{ url_for('video') }}"><button class="button button2">Open Camera</button></a></center>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <center><b class="btn btn-warning" style="width: 50%;">Detect Upload</b></center>
+        <br>
+        <center>
+            <form action="/v2" method = "post" enctype = "multipart/form-data">
+                <input type="file" id="file" name="file">
+                <input type="submit">
+              </form>
+              
+        </center>
+    </div>
+</div>
+{% endblock %}
